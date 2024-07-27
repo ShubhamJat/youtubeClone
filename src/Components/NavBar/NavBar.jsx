@@ -9,16 +9,17 @@ import notifn_icon from '../../assets/notification.png'
 import profile_icon from '../../assets/jack.png'
 import { Link } from 'react-router-dom'
 
-const NavBar = ({setSidebar}) => {
+const NavBar = ({setSidebar,setSearchText}) => {
   return (
     <nav className='flex-div'>
         <div className='nav-left flex-div'>
             <img className='menu-icon' onClick={()=>setSidebar(prev => prev===false?true:false)} src={menu_icon} alg=""/>
-            <Link to="/"><img className='logo' src={logo} alt=""/></Link>
+            <Link to="/"><img className='logo' src={logo} onClick={()=>{document.getElementById('searchInput').value="";setSearchText('')}} alt=""/></Link>
         </div>
         <div className='nav-middle flex-div'>
             <div className="search-bar flex-div">
-             <input className='' type='text' placeholder='Search'/>
+             <input id='searchInput' type='text' placeholder='Search' 
+              onChange={(e)=> e.target.value.length >3 ? setSearchText(e.target.value) : ""}/>
              <img src={search_icon} alt=""/>
             </div>  
         </div>

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './PlayVideo.css'
-import video1 from '../../assets/video.mp4'
 import like from '../../assets/like.png'
 import dislike from '../../assets/dislike.png'
 import share from '../../assets/share.png'
 import save from '../../assets/save.png'
 import jack from '../../assets/jack.png'
-import user_profile from '../../assets/user_profile.jpg'
 import { API_KEY, value_converter } from '../../data'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
@@ -25,7 +23,7 @@ const PlayVideo = () => {
     const chndataUrl = `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${vidData.snippet.channelId}&key=${API_KEY}`;
     await fetch(chndataUrl).then(response => response.json()).then(data => setChnData(data.items[0]));
 
-    const commentdataUrl = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${API_KEY}`;
+    const commentdataUrl = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=5&videoId=${videoId}&key=${API_KEY}`;
     await fetch(commentdataUrl).then(response => response.json()).then(data => setCommentData(data.items));
 
   }
